@@ -12,22 +12,20 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == player1Name)
+        if (player1Name.equals(playerName))
             player1Score += 1;
         else
             player2Score += 1;
     }
 
     public String getScore() {
-        String score = "";
         if (isTie()) {
-            score = deuce();
+            return deuce();
         } else if (isAdvantageOrWin()) {
-            score = advantageOrWin();
+            return advantageOrWin();
         } else {
-            score = zeroToThreePoints();
+            return zeroToThreePoints();
         }
-        return score;
     }
 
     private boolean isAdvantageOrWin() {
@@ -39,14 +37,11 @@ public class TennisGame1 implements TennisGame {
         int minusResult = player1Score - player2Score;
         if (minusResult == 1) {
             score = "Advantage " + player1Name;
-        }
-        else if (minusResult == -1) {
+        } else if (minusResult == -1) {
             score = "Advantage " + player2Name;
-        }
-        else if (minusResult >= 2){
+        } else if (minusResult >= 2) {
             score = "Win for " + player1Name;
-        }
-        else {
+        } else {
             score = "Win for " + player2Name;
         }
         return score;
