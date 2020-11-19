@@ -22,12 +22,16 @@ public class TennisGame1 implements TennisGame {
         String score = "";
         if (isTie()) {
             score = deuce();
-        } else if (player1Score >= 4 || player2Score >= 4) {
+        } else if (isAdvantageOrWin()) {
             score = advantageOrWin();
         } else {
             score = zeroToThreePoints();
         }
         return score;
+    }
+
+    private boolean isAdvantageOrWin() {
+        return player1Score >= 4 || player2Score >= 4;
     }
 
     private String advantageOrWin() {
@@ -52,6 +56,26 @@ public class TennisGame1 implements TennisGame {
         return player1Score == player2Score;
     }
 
+    private String deuce() {
+        String score;
+        switch (player1Score) {
+            case 0:
+                score = integerToTennisTerm(player1Score) + "-All";
+                break;
+            case 1:
+                score = integerToTennisTerm(player1Score) + "-All";
+                break;
+            case 2:
+                score = integerToTennisTerm(player1Score) + "-All";
+                break;
+            default:
+                score = "Deuce";
+                break;
+
+        }
+        return score;
+    }
+
     private String zeroToThreePoints() {
         return integerToTennisTerm(player1Score) + "-" + integerToTennisTerm(player2Score);
     }
@@ -71,26 +95,6 @@ public class TennisGame1 implements TennisGame {
             case 3:
                 score = "Forty";
                 break;
-        }
-        return score;
-    }
-
-    private String deuce() {
-        String score;
-        switch (player1Score) {
-            case 0:
-                score = "Love-All";
-                break;
-            case 1:
-                score = "Fifteen-All";
-                break;
-            case 2:
-                score = "Thirty-All";
-                break;
-            default:
-                score = "Deuce";
-                break;
-
         }
         return score;
     }
