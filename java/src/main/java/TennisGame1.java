@@ -12,10 +12,11 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (player1Name.equals(playerName))
+        if (player1Name.equals(playerName)) {
             player1Score += 1;
-        else
+        } else {
             player2Score += 1;
+        }
     }
 
     public String getScore() {
@@ -63,22 +64,22 @@ public class TennisGame1 implements TennisGame {
         return integerToTennisTerm(player1Score) + "-" + integerToTennisTerm(player2Score);
     }
 
-    private String integerToTennisTerm(int tempScore) {
-        String score = "";
-        switch (tempScore) {
+    private String integerToTennisTerm(int score) {
+        String tennisTerm = "";
+        switch (score) {
             case 0:
-                score = "Love";
+                tennisTerm = "Love";
                 break;
             case 1:
-                score = "Fifteen";
+                tennisTerm = "Fifteen";
                 break;
             case 2:
-                score = "Thirty";
+                tennisTerm = "Thirty";
                 break;
             case 3:
-                score = "Forty";
+                tennisTerm = "Forty";
                 break;
         }
-        return score;
+        return tennisTerm;
     }
 }
