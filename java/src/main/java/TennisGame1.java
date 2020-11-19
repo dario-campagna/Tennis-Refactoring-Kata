@@ -23,21 +23,27 @@ public class TennisGame1 implements TennisGame {
         if (isTie()) {
             score = deuce();
         } else if (player1Score >= 4 || player2Score >= 4) {
-            int minusResult = player1Score - player2Score;
-            if (minusResult == 1) {
-                score = "Advantage " + player1Name;
-            }
-            else if (minusResult == -1) {
-                score = "Advantage " + player2Name;
-            }
-            else if (minusResult >= 2){
-                score = "Win for " + player1Name;
-            }
-            else {
-                score = "Win for " + player2Name;
-            }
+            score = advantageOrWin();
         } else {
-            score = zeroToThreePoints(score);
+            score = zeroToThreePoints();
+        }
+        return score;
+    }
+
+    private String advantageOrWin() {
+        String score;
+        int minusResult = player1Score - player2Score;
+        if (minusResult == 1) {
+            score = "Advantage " + player1Name;
+        }
+        else if (minusResult == -1) {
+            score = "Advantage " + player2Name;
+        }
+        else if (minusResult >= 2){
+            score = "Win for " + player1Name;
+        }
+        else {
+            score = "Win for " + player2Name;
         }
         return score;
     }
@@ -46,7 +52,7 @@ public class TennisGame1 implements TennisGame {
         return player1Score == player2Score;
     }
 
-    private String zeroToThreePoints(String score) {
+    private String zeroToThreePoints() {
         return integerToTennisTerm(player1Score) + "-" + integerToTennisTerm(player2Score);
     }
 
