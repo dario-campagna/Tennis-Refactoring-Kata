@@ -1,6 +1,6 @@
 
 public class TennisGame1 implements TennisGame {
-    
+
     private int player1Score = 0;
     private String player1Name;
     private int player2Score = 0;
@@ -20,21 +20,24 @@ public class TennisGame1 implements TennisGame {
 
     public String getScore() {
         String score = "";
-        int tempScore=0;
-        if (isTie())
-        {
-            score = deuceScore();
-        }
-        else if (player1Score >=4 || player2Score >=4)
-        {
+        int tempScore = 0;
+        if (isTie()) {
+            score = deuce();
+        } else if (player1Score >= 4 || player2Score >= 4) {
             int minusResult = player1Score - player2Score;
-            if (minusResult==1) score ="Advantage " + player1Name;
-            else if (minusResult ==-1) score ="Advantage " + player2Name;
-            else if (minusResult>=2) score = "Win for " + player1Name;
-            else score ="Win for " + player2Name;
-        }
-        else
-        {
+            if (minusResult == 1) {
+                score = "Advantage " + player1Name;
+            }
+            else if (minusResult == -1) {
+                score = "Advantage " + player2Name;
+            }
+            else if (minusResult >= 2){
+                score = "Win for " + player1Name;
+            }
+            else {
+                score = "Win for " + player2Name;
+            }
+        } else {
             score = zeroToThreePoints(score);
         }
         return score;
@@ -50,39 +53,37 @@ public class TennisGame1 implements TennisGame {
 
     private String integerToTennisTerm(int tempScore) {
         String score = "";
-        switch(tempScore)
-        {
+        switch (tempScore) {
             case 0:
-                score ="Love";
+                score = "Love";
                 break;
             case 1:
-                score ="Fifteen";
+                score = "Fifteen";
                 break;
             case 2:
-                score ="Thirty";
+                score = "Thirty";
                 break;
             case 3:
-                score ="Forty";
+                score = "Forty";
                 break;
         }
         return score;
     }
 
-    private String deuceScore() {
+    private String deuce() {
         String score;
-        switch (player1Score)
-        {
+        switch (player1Score) {
             case 0:
-                    score = "Love-All";
+                score = "Love-All";
                 break;
             case 1:
-                    score = "Fifteen-All";
+                score = "Fifteen-All";
                 break;
             case 2:
-                    score = "Thirty-All";
+                score = "Thirty-All";
                 break;
             default:
-                    score = "Deuce";
+                score = "Deuce";
                 break;
 
         }
