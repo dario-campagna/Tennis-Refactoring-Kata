@@ -57,23 +57,11 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String deuce() {
-        String score;
-        switch (player1Score) {
-            case 0:
-                score = integerToTennisTerm(player1Score) + "-All";
-                break;
-            case 1:
-                score = integerToTennisTerm(player1Score) + "-All";
-                break;
-            case 2:
-                score = integerToTennisTerm(player1Score) + "-All";
-                break;
-            default:
-                score = "Deuce";
-                break;
-
+        if (player1Score < 3) {
+            return integerToTennisTerm(player1Score) + "-All";
+        } else {
+            return "Deuce";
         }
-        return score;
     }
 
     private String zeroToThreePoints() {
