@@ -2,8 +2,8 @@
 public class TennisGame1 implements TennisGame {
     
     private int player1Score = 0;
-    private int player2Score = 0;
     private String player1Name;
+    private int player2Score = 0;
     private String player2Name;
 
     public TennisGame1(String player1Name, String player2Name) {
@@ -21,24 +21,9 @@ public class TennisGame1 implements TennisGame {
     public String getScore() {
         String score = "";
         int tempScore=0;
-        if (player1Score == player2Score)
+        if (isTie())
         {
-            switch (player1Score)
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
+            score = deuceScore();
         }
         else if (player1Score >=4 || player2Score >=4)
         {
@@ -50,26 +35,57 @@ public class TennisGame1 implements TennisGame {
         }
         else
         {
-            for (int i=1; i<3; i++)
+            score = zeroToThreePoints(score);
+        }
+        return score;
+    }
+
+    private boolean isTie() {
+        return player1Score == player2Score;
+    }
+
+    private String zeroToThreePoints(String score) {
+        int tempScore;
+        for (int i = 1; i<3; i++)
+        {
+            if (i==1) tempScore = player1Score;
+            else { score +="-"; tempScore = player2Score;}
+            switch(tempScore)
             {
-                if (i==1) tempScore = player1Score;
-                else { score+="-"; tempScore = player2Score;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
+                case 0:
+                    score +="Love";
+                    break;
+                case 1:
+                    score +="Fifteen";
+                    break;
+                case 2:
+                    score +="Thirty";
+                    break;
+                case 3:
+                    score +="Forty";
+                    break;
             }
+        }
+        return score;
+    }
+
+    private String deuceScore() {
+        String score;
+        switch (player1Score)
+        {
+            case 0:
+                    score = "Love-All";
+                break;
+            case 1:
+                    score = "Fifteen-All";
+                break;
+            case 2:
+                    score = "Thirty-All";
+                break;
+            default:
+                    score = "Deuce";
+                break;
+
         }
         return score;
     }
