@@ -45,14 +45,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String zeroToThreePoints(String score) {
-        int tempScore;
-        for (int i = 1; i<3; i++)
-        {
-            if (i==1) tempScore = player1Score;
-            else { score +="-"; tempScore = player2Score;}
-            score += integerToTennisTerm(tempScore);
-        }
-        return score;
+        return integerToTennisTerm(player1Score) + "-" + integerToTennisTerm(player2Score);
     }
 
     private String integerToTennisTerm(int tempScore) {
