@@ -50,21 +50,27 @@ public class TennisGame1 implements TennisGame {
         {
             if (i==1) tempScore = player1Score;
             else { score +="-"; tempScore = player2Score;}
-            switch(tempScore)
-            {
-                case 0:
-                    score +="Love";
-                    break;
-                case 1:
-                    score +="Fifteen";
-                    break;
-                case 2:
-                    score +="Thirty";
-                    break;
-                case 3:
-                    score +="Forty";
-                    break;
-            }
+            score += integerToTennisTerm(tempScore);
+        }
+        return score;
+    }
+
+    private String integerToTennisTerm(int tempScore) {
+        String score = "";
+        switch(tempScore)
+        {
+            case 0:
+                score ="Love";
+                break;
+            case 1:
+                score ="Fifteen";
+                break;
+            case 2:
+                score ="Thirty";
+                break;
+            case 3:
+                score ="Forty";
+                break;
         }
         return score;
     }
