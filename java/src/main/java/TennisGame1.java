@@ -32,16 +32,8 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
-    private boolean isAdvantageOrWin() {
-        return isAdvantage() || isWin();
-    }
-
     private boolean isAdvantage() {
         return player1Score >= 3 && player2Score >= 3 && (player1Score - player2Score == 1 || player2Score - player1Score == 1);
-    }
-
-    private boolean isWin() {
-        return player1Score >= 4 || player2Score >= 4 && (player1Score - player2Score >= 2 || player2Score - player1Score >= 2);
     }
 
     private String advantage() {
@@ -54,6 +46,14 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
+    private boolean isAdvantageForPlayer1() {
+        return player1Score - player2Score == 1;
+    }
+
+    private boolean isWin() {
+        return player1Score >= 4 || player2Score >= 4 && (player1Score - player2Score >= 2 || player2Score - player1Score >= 2);
+    }
+
     private String win() {
         String score;
         if (isPlayer1Winner()) {
@@ -62,14 +62,6 @@ public class TennisGame1 implements TennisGame {
             score = "Win for " + player2Name;
         }
         return score;
-    }
-
-    private boolean isAdvantageForPlayer1() {
-        return player1Score - player2Score == 1;
-    }
-
-    private boolean isAdvantageForPlayer2() {
-        return player1Score - player2Score == -1;
     }
 
     private boolean isPlayer1Winner() {
