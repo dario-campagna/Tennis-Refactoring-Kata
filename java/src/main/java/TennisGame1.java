@@ -78,17 +78,17 @@ public class TennisGame1 implements TennisGame {
 
     private String deuce() {
         if (player1Score < 3) {
-            return integerToTennisTerm(player1Score) + "-All";
+            return tennisTermFor(player1Score) + "-All";
         } else {
             return "Deuce";
         }
     }
 
     private String fromLoveToForty() {
-        return integerToTennisTerm(player1Score) + "-" + integerToTennisTerm(player2Score);
+        return tennisTermFor(player1Score) + "-" + tennisTermFor(player2Score);
     }
 
-    private String integerToTennisTerm(int score) {
+    private String tennisTermFor(int score) {
         String tennisTerm = "";
         switch (score) {
             case 0:
