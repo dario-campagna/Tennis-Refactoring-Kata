@@ -23,25 +23,33 @@ public class TennisGame1 implements TennisGame {
     public String getScore() {
         if (isTie()) {
             return deuce();
-        } else if (isAdvantageOrWin()) {
-            return advantageOrWin();
-        } else {
+        } else if (isAdvantage()) {
+            return advantage();
+        } else if (isWin()) {
+            return win();
+        } else{
             return fromLoveToForty();
         }
     }
 
     private boolean isAdvantageOrWin() {
-        return player1Score >= 4 || player2Score >= 4;
+        return isAdvantage() || isWin();
     }
 
-    private String advantageOrWin() {
+    private boolean isAdvantage() {
+        return player1Score >= 3 && player2Score >= 3 && (player1Score - player2Score == 1 || player2Score - player1Score == 1);
+    }
+
+    private boolean isWin() {
+        return player1Score >= 4 || player2Score >= 4 && (player1Score - player2Score >= 2 || player2Score - player1Score >= 2);
+    }
+
+    private String advantage() {
         String score;
         if (isAdvantageForPlayer1()) {
             score = "Advantage " + player1Name;
-        } else if (isAdvantageForPlayer2()) {
-            score = "Advantage " + player2Name;
         } else {
-            score = win();
+            score = "Advantage " + player2Name;
         }
         return score;
     }
