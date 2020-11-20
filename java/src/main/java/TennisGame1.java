@@ -33,7 +33,15 @@ public class TennisGame1 implements TennisGame {
     }
 
     private boolean isAdvantage() {
-        return player1Score >= 3 && player2Score >= 3 && Math.abs(player1Score - player2Score) == 1;
+        return atLeastThreePointsScoredByEachPlayer() && aPlayerHasOneMorePointThanTheOther();
+    }
+
+    private boolean aPlayerHasOneMorePointThanTheOther() {
+        return Math.abs(player1Score - player2Score) == 1;
+    }
+
+    private boolean atLeastThreePointsScoredByEachPlayer() {
+        return player1Score >= 3 && player2Score >= 3;
     }
 
     private String advantage() {
@@ -41,7 +49,15 @@ public class TennisGame1 implements TennisGame {
     }
 
     private boolean isWin() {
-        return player1Score >= 4 || player2Score >= 4 && Math.abs(player1Score - player2Score) >= 2;
+        return aPlayerScoredAtLeastFourPoints() && aPlayerHasScoredAtLeastTwoPointsMoreThanTheOther();
+    }
+
+    private boolean aPlayerScoredAtLeastFourPoints() {
+        return player1Score >= 4 || player2Score >= 4;
+    }
+
+    private boolean aPlayerHasScoredAtLeastTwoPointsMoreThanTheOther() {
+        return Math.abs(player1Score - player2Score) >= 2;
     }
 
     private String win() {
