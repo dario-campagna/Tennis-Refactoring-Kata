@@ -3,6 +3,7 @@ public class TennisGame1 implements TennisGame {
 
     private int player1Score = 0;
     private String player1Name;
+
     private int player2Score = 0;
     private String player2Name;
 
@@ -25,7 +26,7 @@ public class TennisGame1 implements TennisGame {
         } else if (isAdvantageOrWin()) {
             return advantageOrWin();
         } else {
-            return zeroToThreePoints();
+            return fromLoveToForty();
         }
     }
 
@@ -35,17 +36,36 @@ public class TennisGame1 implements TennisGame {
 
     private String advantageOrWin() {
         String score;
-        int minusResult = player1Score - player2Score;
-        if (minusResult == 1) {
+        if (isAdvantageForPlayer1()) {
             score = "Advantage " + player1Name;
-        } else if (minusResult == -1) {
+        } else if (isAdvantageForPlayer2()) {
             score = "Advantage " + player2Name;
-        } else if (minusResult >= 2) {
+        } else {
+            score = win();
+        }
+        return score;
+    }
+
+    private String win() {
+        String score;
+        if (isPlayer1Winner()) {
             score = "Win for " + player1Name;
         } else {
             score = "Win for " + player2Name;
         }
         return score;
+    }
+
+    private boolean isAdvantageForPlayer1() {
+        return player1Score - player2Score == 1;
+    }
+
+    private boolean isAdvantageForPlayer2() {
+        return player1Score - player2Score == -1;
+    }
+
+    private boolean isPlayer1Winner() {
+        return player1Score - player2Score >= 2;
     }
 
     private boolean isTie() {
@@ -60,7 +80,7 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
-    private String zeroToThreePoints() {
+    private String fromLoveToForty() {
         return integerToTennisTerm(player1Score) + "-" + integerToTennisTerm(player2Score);
     }
 
