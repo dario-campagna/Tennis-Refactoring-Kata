@@ -27,45 +27,33 @@ public class TennisGame1 implements TennisGame {
             return advantage();
         } else if (isWin()) {
             return win();
-        } else{
+        } else {
             return fromLoveToForty();
         }
     }
 
     private boolean isAdvantage() {
-        return player1Score >= 3 && player2Score >= 3 && (player1Score - player2Score == 1 || player2Score - player1Score == 1);
+        return player1Score >= 3 && player2Score >= 3 && Math.abs(player1Score - player2Score) == 1;
     }
 
     private String advantage() {
-        String score;
-        if (isAdvantageForPlayer1()) {
-            score = "Advantage " + player1Name;
-        } else {
-            score = "Advantage " + player2Name;
-        }
-        return score;
-    }
-
-    private boolean isAdvantageForPlayer1() {
-        return player1Score - player2Score == 1;
+        return "Advantage " + playerWithHigherScore();
     }
 
     private boolean isWin() {
-        return player1Score >= 4 || player2Score >= 4 && (player1Score - player2Score >= 2 || player2Score - player1Score >= 2);
+        return player1Score >= 4 || player2Score >= 4 && Math.abs(player1Score - player2Score) >= 2;
     }
 
     private String win() {
-        String score;
-        if (isPlayer1Winner()) {
-            score = "Win for " + player1Name;
-        } else {
-            score = "Win for " + player2Name;
-        }
-        return score;
+        return "Win for " + playerWithHigherScore();
     }
 
-    private boolean isPlayer1Winner() {
-        return player1Score - player2Score >= 2;
+    private String playerWithHigherScore() {
+        if (player1Score > player2Score) {
+            return player1Name;
+        } else {
+            return player2Name;
+        }
     }
 
     private boolean isTie() {
