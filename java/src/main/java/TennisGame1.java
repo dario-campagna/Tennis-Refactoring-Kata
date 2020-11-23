@@ -1,11 +1,11 @@
 
 public class TennisGame1 implements TennisGame {
 
-    private int player1Score = 0;
     private String player1Name;
+    private int player1Score = 0;
 
-    private int player2Score = 0;
     private String player2Name;
+    private int player2Score = 0;
 
     public TennisGame1(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -36,12 +36,12 @@ public class TennisGame1 implements TennisGame {
         return atLeastThreePointsScoredByEachPlayer() && aPlayerHasOneMorePointThanTheOther();
     }
 
-    private boolean aPlayerHasOneMorePointThanTheOther() {
-        return Math.abs(player1Score - player2Score) == 1;
-    }
-
     private boolean atLeastThreePointsScoredByEachPlayer() {
         return player1Score >= 3 && player2Score >= 3;
+    }
+
+    private boolean aPlayerHasOneMorePointThanTheOther() {
+        return Math.abs(player1Score - player2Score) == 1;
     }
 
     private String advantage() {
